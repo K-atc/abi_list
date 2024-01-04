@@ -33,8 +33,3 @@ fun:FT_Load_Sfnt_Table=uninstrumented
 fun:FT_Load_Sfnt_Table=discard
 [...]
 ```
-
-
-:memo: Known issues
-----
-- [ ] Exclude dependency functions from outputs (e.g. `mprotect`)

@@ -22,7 +22,7 @@ fn main() {
     let (dynsyms, strtab) = (common.dynsyms.unwrap(), common.dynsyms_strs.unwrap());
     for sym in dynsyms.iter() {
         let sym_name = strtab.get(sym.st_name as usize).unwrap();
-        if !sym_name.is_empty() {
+        if !sym_name.is_empty() && sym.st_value > 0 {
             println!("fun:{}=uninstrumented", sym_name);
             println!("fun:{}=discard", sym_name);
         }
