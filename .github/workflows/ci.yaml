@@ -1,0 +1,29 @@
+on: [push]
+
+name: Build crate and examples, and run all tests
+
+jobs:
+  build:
+    name: Build crate without default feature
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+      - run: cargo build
+      - run: cargo build --no-default-features
+      - run: cargo build --features metrics
+
+  test:
+    name: Run all tests
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: nightly
+          override: true
+      - run: cargo test
+      - run: cargo test --features metrics
